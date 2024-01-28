@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0889cfae-8322-4e5f-897f-787adc6075e0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/job4j_grabber.iml" afterDir="false" />
+    <list default="true" id="0889cfae-8322-4e5f-897f-787adc6075e0" name="Changes" comment="0. Техническое задание. Агрегатор Java Вакансий. [#260357]">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +52,18 @@
       <option name="presentableId" value="Default" />
       <updated>1706439212306</updated>
     </task>
+    <task id="LOCAL-00001" summary="0. Техническое задание. Агрегатор Java Вакансий. [#260357]">
+      <created>1706442739779</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706442739779</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="0. Техническое задание. Агрегатор Java Вакансий. [#260357]" />
+    <option name="LAST_COMMIT_MESSAGE" value="0. Техническое задание. Агрегатор Java Вакансий. [#260357]" />
   </component>
 </project>
