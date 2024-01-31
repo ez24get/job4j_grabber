@@ -29,6 +29,7 @@ public class AlertRabbit {
             se.printStackTrace();
         }
     }
+
     public static int getProperties() {
         try (InputStream input = AlertRabbit.class.getClassLoader()
                 .getResourceAsStream("rabbit.properties")) {
