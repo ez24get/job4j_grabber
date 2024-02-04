@@ -1,14 +1,11 @@
 package ru.job4j.quarz;
 
-import org.postgresql.util.PSQLException;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import static org.quartz.JobBuilder.*;
@@ -47,7 +44,7 @@ public class AlertRabbit {
 
     private Properties readProperties() {
         Properties properties = new Properties();
-        try (InputStream in = AlertRabbit.class.getClassLoader().getResourceAsStream("db/rabbit.properties")){
+        try (InputStream in = AlertRabbit.class.getClassLoader().getResourceAsStream("db/rabbit.properties")) {
             properties.load(in);
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,14 +60,14 @@ public class AlertRabbit {
         }
     }
 
-    private Connection initConnection(Properties properties){
+    private Connection initConnection(Properties properties) {
         Connection connection = null;
         try {
             Class.forName(properties.getProperty("driver"));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        try (Connection connected= DriverManager.getConnection(properties.getProperty("url"),
+        try (Connection connected = DriverManager.getConnection(properties.getProperty("url"),
                 properties.getProperty("username"), properties.getProperty("password"))) {
             connection = connected;
         } catch (SQLException e) {
