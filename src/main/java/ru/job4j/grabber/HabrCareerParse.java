@@ -22,12 +22,12 @@ public class HabrCareerParse {
         Elements rows = document.select(".vacancy-card__inner");
         rows.forEach(row -> {
             Element titleElement = row.select(".vacancy-card__title").first();
-            Element date = row.select(".vacancy-card__date").first();
             Element linkElement = titleElement.child(0);
             String vacancyName = titleElement.text();
-            String vacancyDate = date.text();
+            Element date = row.select(".vacancy-card__date").first();
+            Element vacancyDate = date.child(0);
             String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
-            System.out.printf("%s %s Опубликовано - %s%n", vacancyName, link, vacancyDate);
+            System.out.printf("%s %s Опубликовано - %s%n", vacancyName, link, vacancyDate.attr("datetime"));
         });
     }
 }
