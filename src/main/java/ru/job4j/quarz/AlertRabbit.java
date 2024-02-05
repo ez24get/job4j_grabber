@@ -15,10 +15,9 @@ import static org.quartz.SimpleScheduleBuilder.*;
 public class AlertRabbit {
 
     public static void main(String[] args) {
-        try {
-            AlertRabbit alertRabbit = new AlertRabbit();
-            Properties properties = alertRabbit.readProperties();
-            Connection connection = alertRabbit.initConnection(properties);
+        AlertRabbit alertRabbit = new AlertRabbit();
+        Properties properties = alertRabbit.readProperties();
+        try (Connection connection = alertRabbit.initConnection(properties)) {
             alertRabbit.createTable(connection);
             Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
             scheduler.start();
@@ -38,7 +37,7 @@ public class AlertRabbit {
             Thread.sleep(10000);
             scheduler.shutdown();
         } catch (Exception se) {
-            se.printStackTrace();
+                se.printStackTrace();
         }
     }
 
@@ -60,20 +59,14 @@ public class AlertRabbit {
         }
     }
 
-    private Connection initConnection(Properties properties) {
-        Connection connection = null;
+    private Connection initConnection(Properties properties) throws SQLException {
         try {
             Class.forName(properties.getProperty("driver"));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        try (Connection connected = DriverManager.getConnection(properties.getProperty("url"),
-                properties.getProperty("username"), properties.getProperty("password"))) {
-            connection = connected;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
+            return DriverManager.getConnection(properties.getProperty("url"),
+                    properties.getProperty("username"), properties.getProperty("password"));
     }
 
     private void createTable(Connection connection) {
@@ -97,6 +90,7 @@ public class AlertRabbit {
             try (PreparedStatement ps =
                          connection.prepareStatement("INSERT INTO rabbit (created) VALUES (?)")) {
                 ps.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+                ps.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
