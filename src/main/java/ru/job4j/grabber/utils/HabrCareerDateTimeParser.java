@@ -13,9 +13,4 @@ public class HabrCareerDateTimeParser implements DateTimeParser {
     public LocalDateTime parse(String parse) {
         return LocalDateTime.parse(parse, formatter);
     }
-
-    public static void main(String[] args) {
-        HabrCareerDateTimeParser o = new HabrCareerDateTimeParser();
-        System.out.println(o.parse("2024-02-05T11:28:38+03:00"));
-    }
 }
