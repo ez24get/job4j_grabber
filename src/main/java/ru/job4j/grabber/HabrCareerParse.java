@@ -14,10 +14,9 @@ import java.util.List;
 
 public class HabrCareerParse implements Parse {
 
-    private static final String SOURCE_LINK = "https://career.habr.com";
     public static final String PREFIX = "/vacancies?page=";
     public static final String SUFFIX = "&q=Java%20developer&type=all";
-    private final  DateTimeParser dateTimeParser;
+    private final DateTimeParser dateTimeParser;
 
     public HabrCareerParse(DateTimeParser dateTimeParser) {
         this.dateTimeParser = dateTimeParser;
@@ -45,7 +44,7 @@ public class HabrCareerParse implements Parse {
                 Element date = row.select(".vacancy-card__date").first();
                 Element vacancyDate = date.child(0);
                 String dateTime = vacancyDate.attr("datetime");
-                String linkOut = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
+                String linkOut = String.format("%s%s", link, linkElement.attr("href"));
                 post.setTitle(titleElement.text());
                 post.setLink(linkOut);
                 post.setCreated(dateTimeParse.parse(dateTime));

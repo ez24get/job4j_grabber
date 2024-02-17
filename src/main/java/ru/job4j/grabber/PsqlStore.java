@@ -1,15 +1,8 @@
 package ru.job4j.grabber;
 
-import ru.job4j.grabber.utils.DateTimeParser;
-import ru.job4j.grabber.utils.HabrCareerDateTimeParser;
-import ru.job4j.quarz.AlertRabbit;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -27,17 +20,6 @@ public class PsqlStore implements Store {
         connection = DriverManager.getConnection(config.getProperty("url"),
                 config.getProperty("username"),
                 config.getProperty("password"));
-    }
-
-    private static Properties readProperties() {
-        Properties properties = new Properties();
-        try (InputStream in = AlertRabbit.class.getClassLoader().
-                getResourceAsStream("db/grabber/grabber.properties")) {
-            properties.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return properties;
     }
 
     private Post createPost(ResultSet resultSet) throws SQLException {
@@ -109,23 +91,6 @@ public class PsqlStore implements Store {
     public void close() throws Exception {
         if (connection != null) {
             connection.close();
-        }
-    }
-
-    public static void main(String[] args) {
-        Post post = new Post();
-        DateTimeParser dateTimeParser = new HabrCareerDateTimeParser();
-        LocalDateTime time = dateTimeParser.parse("2007-12-03T10:15:30+01:00");
-        post.setTitle("Java");
-        post.setDescription("bla-bla");
-        post.setLink("link");
-        post.setCreated(time);
-        Properties properties = readProperties();
-        try (PsqlStore psqlPost = new PsqlStore(properties)) {
-            psqlPost.save(post);
-            System.out.println(psqlPost.getAll());
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }
