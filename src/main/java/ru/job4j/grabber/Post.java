@@ -72,8 +72,8 @@ public class Post {
         return "Post: \n"
                 + "id=" + id + ",\n"
                 + "title=" + title + ",\n"
-                + "link=" + link + ",\n"
                 + "description=" + description + ",\n"
+                + "link=" + link + ",\n"
                 + "created=" + created
                 + "\n///";
     }
