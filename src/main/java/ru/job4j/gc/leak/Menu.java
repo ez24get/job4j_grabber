@@ -25,15 +25,16 @@ public class Menu {
             """;
 
     public static void main(String[] args) {
+        Menu menu = new Menu();
         Random random = new Random();
         UserGenerator userGenerator = new UserGenerator(random);
         CommentGenerator commentGenerator = new CommentGenerator(random, userGenerator);
         Scanner scanner = new Scanner(System.in);
         PostStore postStore = new PostStore();
-        start(commentGenerator, scanner, userGenerator, postStore);
+        menu.start(commentGenerator, scanner, userGenerator, postStore);
     }
 
-    private static void start(CommentGenerator commentGenerator, Scanner scanner, UserGenerator userGenerator, PostStore postStore) {
+    private void start(CommentGenerator commentGenerator, Scanner scanner, UserGenerator userGenerator, PostStore postStore) {
         boolean run = true;
         while (run) {
             System.out.println(MENU);
@@ -45,7 +46,7 @@ public class Menu {
                 String text = scanner.nextLine();
                 userGenerator.generate();
                 commentGenerator.generate();
-                postStore.add(new Post(text, CommentGenerator.getComments()));
+                postStore.add(new Post(text, commentGenerator.getComments()));
             } else if (ADD_MANY_POST == userChoice) {
                 System.out.println(TEXT_OF_POST);
                 String text = scanner.nextLine();
@@ -66,10 +67,11 @@ public class Menu {
         }
     }
 
-    private static void createPost(CommentGenerator commentGenerator,
+    private void createPost(CommentGenerator commentGenerator,
                                    UserGenerator userGenerator, PostStore postStore, String text) {
+
         userGenerator.generate();
         commentGenerator.generate();
-        postStore.add(new Post(text, CommentGenerator.getComments()));
+        postStore.add(new Post(text, commentGenerator.getComments()));
     }
 }
