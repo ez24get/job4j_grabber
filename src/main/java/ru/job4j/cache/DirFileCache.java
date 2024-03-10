@@ -13,7 +13,7 @@ public class DirFileCache extends AbstractCache<String, String> {
         return get(key);
     }
 
-    public String getCachingDir() {
-        return cachingDir;
+    public String loadContent(String key) {
+        return load(key);
     }
 }
