@@ -1,6 +1,5 @@
 package ru.job4j.cache;
 
-import javax.imageio.IIOException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,12 +14,12 @@ public class DirFileCache extends AbstractCache<String, String> {
 
     @Override
     protected String load(String key) {
+        String content = null;
         try {
-            String content = Files.readString(Paths.get(key));
-            put(key, content);
+            content = Files.readString(Paths.get(cachingDir, key));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return get(key);
+        return content;
     }
 }
