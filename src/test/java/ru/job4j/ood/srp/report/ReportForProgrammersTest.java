@@ -12,15 +12,16 @@ import static org.assertj.core.api.Assertions.*;
 
 class ReportForProgrammersTest {
     @Test
-    public void whenOldGenerated() {
+    public void whenOldGenerated() throws IOException {
         MemoryStore store = new MemoryStore();
         Calendar now = Calendar.getInstance();
         ru.job4j.ood.srp.model.Employee worker = new ru.job4j.ood.srp.model.Employee("Ivan", now, now, 100);
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         store.add(worker);
         ReportForProgrammers engine = new ReportForProgrammers(store, parser);
-        String file = "/Users/michael/job4j_grabber/src/main/java/ru/job4j/ood/srp/csv/report.csv";
-        engine.csvOut(engine.generate(employee -> true), file);
+        File file = File.createTempFile("report", "csv");
+        String path = file.getPath();
+        engine.csvOut(engine.generate(employee -> true), path);
         StringBuilder expected = new StringBuilder()
                 .append("Name, Hired, Fired, Salary,")
                 .append(System.lineSeparator())
