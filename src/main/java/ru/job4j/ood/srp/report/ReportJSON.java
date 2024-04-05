@@ -1,5 +1,6 @@
 package ru.job4j.ood.srp.report;
 
+import com.google.gson.GsonBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import ru.job4j.ood.srp.formatter.DateTimeParser;
@@ -26,17 +27,32 @@ public class ReportJSON implements Report {
         return toJSON(list);
     }
 
+//    public String toJSON(List<Employee> list) {
+//        JSONArray jsonArray = new JSONArray(list);
+//        JSONObject jsonObject;
+//        for (Employee e : list) {
+//            jsonObject = new JSONObject();
+//            jsonObject.put("name", e.getName());
+//            jsonObject.put("hired", dateTimeParser.parse(e.getHired()));
+//            jsonObject.put("fired", dateTimeParser.parse(e.getFired()));
+//            jsonObject.put("salary", e.getSalary());
+//            jsonArray.put(jsonObject);
+//        }
+//        return jsonArray.toString();
+//    }
+
     public String toJSON(List<Employee> list) {
-        JSONArray jsonArray = new JSONArray(list);
-        JSONObject jsonObject;
-        for (Employee e : list) {
-            jsonObject = new JSONObject();
-            jsonObject.put("name", e.getName());
-            jsonObject.put("hired", dateTimeParser.parse(e.getHired()));
-            jsonObject.put("fired", dateTimeParser.parse(e.getFired()));
-            jsonObject.put("salary", e.getSalary());
-            jsonArray.put(jsonObject);
-        }
-        return jsonArray.toString();
+        var library = new GsonBuilder().create();
+        return library.toJson(list);
     }
+
+//    public String toJSON(List<Employee> list) {
+//        var library = new GsonBuilder().create();
+//        StringBuilder stringBuilder = new StringBuilder();
+//        for (Employee e : list) {
+//            stringBuilder.append(library.toJson(e))
+//                    .append(System.lineSeparator());
+//        }
+//        return library.toJson(list);
+//    }
 }
