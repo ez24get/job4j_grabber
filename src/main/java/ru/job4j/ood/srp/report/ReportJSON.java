@@ -28,20 +28,6 @@ public class ReportJSON implements Report {
         return toJSON(list);
     }
 
-//    public String toJSON(List<Employee> list) {
-//        JSONArray jsonArray = new JSONArray(list);
-//        JSONObject jsonObject;
-//        for (Employee e : list) {
-//            jsonObject = new JSONObject();
-//            jsonObject.put("name", e.getName());
-//            jsonObject.put("hired", dateTimeParser.parse(e.getHired()));
-//            jsonObject.put("fired", dateTimeParser.parse(e.getFired()));
-//            jsonObject.put("salary", e.getSalary());
-//            jsonArray.put(jsonObject);
-//        }
-//        return jsonArray.toString();
-//    }
-
     public String toJSON(List<Employee> list) {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(Calendar.class, new CalendarAdapterJson());
@@ -49,14 +35,4 @@ public class ReportJSON implements Report {
         Gson gson = builder.setPrettyPrinting().create();
         return gson.toJson(list);
     }
-
-//    public String toJSON(List<Employee> list) {
-//        var library = new GsonBuilder().create();
-//        StringBuilder stringBuilder = new StringBuilder();
-//        for (Employee e : list) {
-//            stringBuilder.append(library.toJson(e))
-//                    .append(System.lineSeparator());
-//        }
-//        return library.toJson(list);
-//    }
 }
