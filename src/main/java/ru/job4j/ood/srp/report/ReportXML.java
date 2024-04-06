@@ -2,7 +2,7 @@ package ru.job4j.ood.srp.report;
 
 import ru.job4j.ood.srp.formatter.DateTimeParser;
 import ru.job4j.ood.srp.model.Employee;
-import ru.job4j.ood.srp.store.MemoryStore;
+import ru.job4j.ood.srp.model.Employees;
 import ru.job4j.ood.srp.store.Store;
 
 import javax.xml.bind.JAXBContext;
@@ -35,18 +35,16 @@ public class ReportXML implements Report {
     }
 
     public String toXML(List<Employee> list) throws JAXBException {
-        StringBuilder stringBuilder = new StringBuilder();
-        JAXBContext jaxbContext = JAXBContext.newInstance(Employee.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Employees.class);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        String xml = "";
         try (StringWriter writer = new StringWriter()) {
-            for (Employee e : list) {
-                jaxbMarshaller.marshal(e, writer);
-                stringBuilder.append(writer.getBuffer().toString());
-            }
+            jaxbMarshaller.marshal(new Employees(list), writer);
+            xml = writer.getBuffer().toString();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return stringBuilder.toString();
+        return xml;
     }
 }

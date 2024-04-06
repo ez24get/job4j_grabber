@@ -22,13 +22,21 @@ class ReportXMLTest {
         store.add(worker1);
         Report engine = new ReportXML(store, parser);
         StringBuilder expected = new StringBuilder()
-                .append("Name; Hired; Fired; Salary;")
-                .append(System.lineSeparator())
-                .append(worker.getName()).append(" ")
-                .append(parser.parse(worker.getHired())).append(" ")
-                .append(parser.parse(worker.getFired())).append(" ")
-                .append(1.66)
-                .append(System.lineSeparator());
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n")
+                .append("<employees>\n")
+                .append("    <employee>\n")
+                .append("        <name>").append(worker.getName()).append("</name>\n")
+                .append("        <hired>").append(parser.parse(worker.getHired())).append("</hired>\n")
+                .append("        <fired>").append(parser.parse(worker.getFired())).append("</fired>\n")
+                .append("        <salary>").append(worker.getSalary()).append("</salary>\n")
+                .append("    </employee>\n")
+                .append("    <employee>\n")
+                .append("        <name>").append(worker1.getName()).append("</name>\n")
+                .append("        <hired>").append(parser.parse(worker1.getHired())).append("</hired>\n")
+                .append("        <fired>").append(parser.parse(worker1.getFired())).append("</fired>\n")
+                .append("        <salary>").append(worker1.getSalary()).append("</salary>\n")
+                .append("    </employee>\n")
+                .append("</employees>\n");
         assertThat(engine.generate(employee -> true)).isEqualTo(expected.toString());
     }
 }

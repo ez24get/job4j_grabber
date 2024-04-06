@@ -1,13 +1,14 @@
 package ru.job4j.ood.srp.report;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import ru.job4j.ood.srp.formatter.CalendarAdapterJson;
 import ru.job4j.ood.srp.formatter.DateTimeParser;
 import ru.job4j.ood.srp.model.Employee;
 import ru.job4j.ood.srp.store.Store;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -42,8 +43,11 @@ public class ReportJSON implements Report {
 //    }
 
     public String toJSON(List<Employee> list) {
-        var library = new GsonBuilder().create();
-        return library.toJson(list);
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(Calendar.class, new CalendarAdapterJson());
+        builder.registerTypeAdapter(GregorianCalendar.class, new CalendarAdapterJson());
+        Gson gson = builder.setPrettyPrinting().create();
+        return gson.toJson(list);
     }
 
 //    public String toJSON(List<Employee> list) {
