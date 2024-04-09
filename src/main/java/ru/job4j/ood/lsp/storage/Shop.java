@@ -9,9 +9,11 @@ public class Shop extends AbstractStore {
     private ExpiryDateCheck dateCheck = new ExpiryDateCheck();
 
     @Override
-    public void add(Food food) {
+    public boolean add(Food food) {
+        boolean addToList = dateCheck.check(food, percentLowerEnd, percentUpperEnd);
         if (dateCheck.check(food, percentLowerEnd, percentUpperEnd)) {
             add(food);
         }
+        return addToList;
     }
 }
