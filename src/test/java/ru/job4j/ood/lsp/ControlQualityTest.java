@@ -18,7 +18,7 @@ class ControlQualityTest {
     @Test
     public void whenAddOk() {
         List<Store> storeList = new ArrayList<>();
-        Calendar created = new GregorianCalendar(2024, 3, 12);
+        Calendar created = new GregorianCalendar(2024, 2, 29);
         Calendar expired = new GregorianCalendar(2024, 11, 12);
         storeList.add(new Warehouse());
         storeList.add(new Shop());
@@ -28,7 +28,7 @@ class ControlQualityTest {
         foodList.add(food);
         ControlQuality controlQuality = new ControlQuality(storeList);
         controlQuality.distribute(foodList);
-        Food result = storeList.get(2).getList().get(0);
+        Food result = storeList.get(0).getList().get(0);
         assertThat(result).isEqualTo(food);
     }
 }
