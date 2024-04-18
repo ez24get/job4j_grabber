@@ -18,8 +18,8 @@ class ControlQualityTest {
     @Test
     public void whenAddOk() {
         List<Store> storeList = new ArrayList<>();
-        Calendar created = new GregorianCalendar(2024, 2, 29);
-        Calendar expired = new GregorianCalendar(2024, 11, 12);
+        Calendar created = new GregorianCalendar(2024, Calendar.MARCH, 29);
+        Calendar expired = new GregorianCalendar(2024, Calendar.DECEMBER, 12);
         storeList.add(new Warehouse());
         storeList.add(new Shop());
         storeList.add(new Trash());

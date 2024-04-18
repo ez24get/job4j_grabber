@@ -7,7 +7,10 @@ public class ExpiryDateCheck {
     public boolean check(Food food, double lowEnd, double upEnd) {
         Calendar start = food.getCreateDate();
         Calendar end = food.getExpiryDate();
-        double percentage = (double) (end.getTimeInMillis() - start.getTimeInMillis()) / 100;
+        Calendar now = Calendar.getInstance();
+        double daysTotal = end.getTimeInMillis() - start.getTimeInMillis();
+        double daysPassed = now.getTimeInMillis() - start.getTimeInMillis();
+        double percentage = 100 - (daysPassed / daysTotal) * 100;
         return lowEnd <= percentage && upEnd >= percentage;
     }
 }
