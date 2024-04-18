@@ -11,9 +11,11 @@ public class ParkingControlPanel {
         this.car = car;
     }
 
-    public void parkTo(Map<String, Integer> car) {
+    public boolean parkTo(Map<String, Integer> car) {
+        return false;
     }
 
-    public void leave(Map<String, Integer> car) {
+    public boolean leave(Map<String, Integer> car) {
+        return false;
     }
 }
