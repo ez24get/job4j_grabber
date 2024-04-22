@@ -6,4 +6,10 @@ public interface ParkingLogic {
     boolean parkTo(Car car);
 
     boolean leaveParking(Car car);
+
+    int getCarSize(String licencePlate);
+
+    String getLicencePlate(Car car);
+
+    int getNumberOfCars();
 }

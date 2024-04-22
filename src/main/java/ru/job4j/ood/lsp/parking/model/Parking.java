@@ -1,31 +1,30 @@
 package ru.job4j.ood.lsp.parking.model;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Parking {
-    private List<Car> parkingList;
-    private int parkingCapacity;
+    private Map<String, Double> parkingList;
+    private double parkingCapacity;
 
-    public Parking(List<Car> parkingList, int parkingCapacity) {
-        this.parkingList = parkingList;
+    public Parking(double parkingCapacity) {
         this.parkingCapacity = parkingCapacity;
     }
 
-    public List<Car> getParkingList() {
-        return parkingList;
+    public void addCar(Car car) {
+        parkingList.put(car.getLicencePlate(), car.getCarSize());
     }
 
-    public void setParkingList(List<Car> parkingList) {
-        this.parkingList = parkingList;
-    }
-
-    public int getParkingCapacity() {
+    public double getParkingCapacity() {
         return parkingCapacity;
     }
 
-    public void setParkingCapacity(int parkingCapacity) {
+    public void setParkingCapacity(double parkingCapacity) {
         this.parkingCapacity = parkingCapacity;
+    }
+
+    public int getNumberOfCars() {
+        return parkingList.size();
     }
 
     @Override

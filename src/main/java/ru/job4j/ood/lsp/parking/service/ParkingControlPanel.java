@@ -1,21 +1,38 @@
 package ru.job4j.ood.lsp.parking.service;
 
 import ru.job4j.ood.lsp.parking.model.Car;
+import ru.job4j.ood.lsp.parking.model.Parking;
 
 import java.util.Map;
 
 public class ParkingControlPanel {
-    private Map<String, Integer> car;
 
-    public ParkingControlPanel(Map<String, Integer> car) {
-        this.car = car;
+    private Parking parking;
+
+    public ParkingControlPanel(Parking parking, ParkingLogic action) {
+        this.parking = parking;
+        this.action = action;
     }
 
-    public boolean parkTo(Map<String, Integer> car) {
+    private ParkingLogic action;
+
+    public ParkingControlPanel(Parking parking) {
+        this.parking = parking;
+    }
+
+    public boolean parkTo(Car car) {
         return false;
     }
 
-    public boolean leave(Map<String, Integer> car) {
+    public boolean leave(Car car) {
         return false;
+    }
+
+    public double spaceLeft() {
+        return parking.getParkingCapacity();
+    }
+
+    public int numberOfCars() {
+        return parking.getNumberOfCars();
     }
 }

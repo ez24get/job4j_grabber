@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Car {
     private String licencePlate;
-    private int carSize;
+    private double carSize;
 
-    public Car(String licencePlate, int carSize) {
+    public Car(String licencePlate, double carSize) {
         this.licencePlate = licencePlate;
         this.carSize = carSize;
     }
@@ -19,11 +19,11 @@ public class Car {
         this.licencePlate = licencePlate;
     }
 
-    public int getCarSize() {
+    public double getCarSize() {
         return carSize;
     }
 
-    public void setCarSize(int carSize) {
+    public void setCarSize(double carSize) {
         this.carSize = carSize;
     }
 
