@@ -1,33 +1,14 @@
 package ru.job4j.ood.lsp.parking.service;
 
+import ru.job4j.ood.lsp.parking.checkspace.SpaceCheck;
 import ru.job4j.ood.lsp.parking.model.Car;
-
-import java.util.Map;
+import ru.job4j.ood.lsp.parking.model.Parking;
 
 public class ParkingTwoCarTypes implements ParkingLogic {
+    private SpaceCheck spaceCheck = new SpaceCheck();
 
     @Override
-    public boolean parkTo(Car car) {
-        return false;
-    }
-
-    @Override
-    public boolean leaveParking(Car car) {
-        return false;
-    }
-
-    @Override
-    public int getCarSize(String licencePlate) {
-        return 0;
-    }
-
-    @Override
-    public String getLicencePlate(Car car) {
-        return null;
-    }
-
-    @Override
-    public int getNumberOfCars() {
-        return 0;
+    public boolean acceptCarToParking(Car car, Parking parking) {
+        return spaceCheck.checkSpace(car.getCarSize(), parking.getParkingCapacity());
     }
 }

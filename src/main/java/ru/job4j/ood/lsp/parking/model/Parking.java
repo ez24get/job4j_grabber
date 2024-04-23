@@ -1,10 +1,11 @@
 package ru.job4j.ood.lsp.parking.model;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public class Parking {
-    private Map<String, Double> parkingList;
+    private Map<String, Double> parkingList = new HashMap<>();
     private double parkingCapacity;
 
     public Parking(double parkingCapacity) {
@@ -13,6 +14,16 @@ public class Parking {
 
     public void addCar(Car car) {
         parkingList.put(car.getLicencePlate(), car.getCarSize());
+    }
+
+    public void removeCar(Car car) {
+        if (carExists(car)) {
+            parkingList.remove(car.getLicencePlate());
+        }
+    }
+
+    public boolean carExists(Car car) {
+        return parkingList.containsKey(car.getLicencePlate());
     }
 
     public double getParkingCapacity() {

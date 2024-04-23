@@ -1,16 +1,8 @@
 package ru.job4j.ood.lsp.parking.service;
 
 import org.junit.jupiter.api.Test;
-import ru.job4j.ood.lsp.ControlQuality;
-import ru.job4j.ood.lsp.modelfood.Food;
 import ru.job4j.ood.lsp.parking.model.Car;
 import ru.job4j.ood.lsp.parking.model.Parking;
-import ru.job4j.ood.lsp.storage.Shop;
-import ru.job4j.ood.lsp.storage.Store;
-import ru.job4j.ood.lsp.storage.Trash;
-import ru.job4j.ood.lsp.storage.Warehouse;
-
-import java.util.*;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -29,6 +21,7 @@ class ParkingControlPanelTest {
         Car car1 = new Car("777", 1);
         ParkingLogic logic = new ParkingTwoCarTypes();
         ParkingControlPanel parkingControlPanel = new ParkingControlPanel(new Parking(100), logic);
+        parkingControlPanel.parkTo(car1);
         boolean parked = parkingControlPanel.leave(car1);
         assertThat(parked).isTrue();
     }
